@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      target: prod
+
+    stop_signal: SIGINT
+
+    command:
+      - python3
+      - -m
+      - app
+
+    ports:
+      - 8000:8000
+
+    depends_on:
+      - mongo
+
+    env_file:
+      - .env.prod
+
+  mongo:
+    image: mongo:4.2-bionic
+
+#     volumes:
+#       - ./mongo_db:/data/db  # To make mongo persistent
+
