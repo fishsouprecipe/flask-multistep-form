@@ -1,5 +1,6 @@
 import flask
-import flask_login
+from flask_login import current_user
+from flask_login import login_required
 
 from app.forms.auth import LoginForm
 from app.forms.auth import RegisterForm
@@ -13,7 +14,7 @@ auth_blueprint = flask.Blueprint('auth', __name__)
 
 @auth_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    if flask_login.current_user.is_authenticated:
+    if current_user.is_authenticated:  # type: ignore
         return flask.redirect(flask.url_for('index.index'))
 
     form = LoginForm()
@@ -38,16 +39,15 @@ def login():
 
 
 @auth_blueprint.route('/logout', methods=['GET', 'POST'])
-@flask_login.login_required
+@login_required
 def logout():
     AuthService.logout_user()
-
     return flask.redirect(flask.url_for('index.index'))
 
 
 @auth_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
-    if flask_login.current_user.is_authenticated:
+    if current_user.is_authenticated:  # type: ignore
         return flask.redirect(flask.url_for('index.index'))
 
     form = RegisterForm()

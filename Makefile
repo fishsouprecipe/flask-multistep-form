@@ -1,2 +1,2 @@
 run:
-	python3 -m app
+	python3 -m app -D

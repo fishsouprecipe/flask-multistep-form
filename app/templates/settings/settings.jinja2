@@ -1,0 +1,26 @@
+{% macro render_state(state) %}
+  <p>
+    <div><strong>State group:</strong> {{ state.group.__group_name__ }}</div>
+    <div><strong>State name:</strong> {{ state.name }}</div>
+    <div><strong>Next state:</strong> {{ state.next_state_name }}</div>
+    <div><strong>Prev state:</strong> {{ state.prev_state_name }}</div>
+    <strong>Step Info:</strong>
+    <div style="padding-left: 12px;">
+        <div>Template: {{ state.step_info.template }}</div>
+        <div>Section Name: {{ state.step_info.section_name }}</div>
+    </div>
+  </p>
+{% endmacro %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+</head>
+<body>
+{% for state in states %}
+  {{ render_state(state) }}
+{% endfor %}
+</body>
+</html>
