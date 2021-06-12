@@ -5,7 +5,32 @@
     <title>Index page</title>
 </head>
 <body>
+  <h2>Pages</h2>
+  <div>
+    <a href="{{ url_for('auth.register') }}">Register</a>
+  </div>
+  <div>
+    <a href="{{ url_for('auth.login') }}">Login</a>
+  </div>
+  <div>
+    <a href="{{ url_for('auth.logout') }}">Logout (auth required :) )</a>
+  </div>
+  <div>
+    <a href="{{ url_for('settings.settings') }}">Settings (auth required)</a>
+  </div>
 
+  {% if current_user.is_authenticated %}
+    <h2>Current user: {{ current_user.username }}</h2>
+  {% endif %}
 
+  {% if users %}
+  <h2>Users</h2>
+  {% for user in users %}
+  <p>
+    <div>Username: {{ user.username }}</div>
+    <div>Hashed password: {{ user.hashed_password }}</div>
+  </p>
+  {% endfor %}
+  {% endif %}
 </body>
 </html>

@@ -3,12 +3,12 @@ from wtforms import StringField
 from wtforms.validators import DataRequired
 
 
-class AForm(FlaskForm):
+class FirstForm(FlaskForm):
     first_name = StringField('First Name', validators=[DataRequired()])
     last_name = StringField('Last Name ', validators=[DataRequired()])
 
 
-class BForm(FlaskForm):
+class SecondForm(FlaskForm):
     address_line_1 = StringField(
         'Address Line 1',
         validators=[DataRequired()]
@@ -19,7 +19,7 @@ class BForm(FlaskForm):
     )
 
 
-class CForm(FlaskForm):
+class ThirdForm(FlaskForm):
     cell_phone_number = StringField(
         'Cellphone Number',
         validators=[DataRequired()],

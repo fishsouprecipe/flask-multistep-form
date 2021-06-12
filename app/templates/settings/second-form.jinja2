@@ -1,0 +1,24 @@
+{% from "helpers.jinja2" import render_field %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Form</title>
+</head>
+<body>
+<form method="POST">
+    <h1>Second Form with custom header</h1>
+    {{ form.csrf_token }}
+    {% for field in (
+      form.address_line_1,
+      form.address_line_2,
+    )%}
+      {{ render_field(field) }}
+    {% endfor %}
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
+
+
